@@ -42,15 +42,35 @@
         <div class="container hero-container">
             <h1 class="hero-headline">
                 <div class="animate-up" style="animation-delay: 0.1s;">
-                    <span class="line-1">Built</span> <span class="line-2">at the peak.</span>
+                    <span class="line-1">Where Creativity</span> 
+                </div>
+                <div class="animate-up" style="animation-delay: 0.2s;">
+                    <span class="line-2">Reaches Its Zenith.</span>
                 </div>
             </h1>
-            <p class="hero-subline animate-up" style="animation-delay: 0.3s;">
-                Build what matters, beautifully. We integrate product strategy, cutting-edge design, and powerful engineering to create software that leads the market.
-            </p>
+            <div class="hero-subcontent-row">
+                <p class="hero-subline animate-up" style="animation-delay: 0.3s;">
+                    Zenyth is an Independent developement tech venture that builds scalable SaaS platforms, AI integrations, and high-performance web systems — turning your vision into market-ready software.
+                </p>
+
+                <!-- Sleek Premium Dictionary Definition -->
+                <div class="hero-definition">
+                    <div class="def-pre-title">Why "Zenyth"?</div>
+                    <div class="def-header">
+                        <span class="def-word">ze·nith</span>
+                        <span class="def-pronun">/ˈzēnəTH/</span>
+                        <span class="def-pos">noun</span>
+                    </div>
+                    <div class="def-body">
+                        <span class="def-num">1. </span>The highest point or culminating point.<br>
+                        <span class="def-num">2. </span>The time at which something is most powerful or successful.
+                    </div>
+                </div>
+            </div>
+
             <div class="hero-ctas animate-up" style="animation-delay: 0.4s;">
-                <a href="#contact" class="btn btn-primary">Start a project &rarr;</a>
-                <a href="#work" class="btn btn-secondary">See our work</a>
+                <a href="#contact" class="btn btn-primary">Start Building &rarr;</a>
+                <a href="#work" class="btn btn-secondary">View our Previous Works</a>
             </div>
         </div>
         <div class="hero-bottom-line"></div>
@@ -134,18 +154,22 @@
             <div class="section-label">SELECTED WORKS</div>
             <div class="works-grid">
                 <div class="work-card delay-0">
-                    <div class="work-image-placeholder">
-                        <div class="work-tag">SaaS Platform</div>
-                    </div>
-                    <h3 class="work-title">Student and Staff Management System</h3>
-                    <p class="work-desc">A completely automated workflow software that ease the works for many.</p>
+                    <div class="work-tag">SaaS Platform</div>
+                    <h3 class="work-title">Student & Staff Management System <span style="font-size: 16px; font-weight: 300; display: block; color: rgba(255,255,255,0.6); margin-top: 8px;">Annamalai University</span></h3>
+                    <p class="work-desc">A department-level management platform built to digitize student and staff records. The system enables efficient data organization, quick access to academic information, and simplified administrative workflows through a modern web interface.</p>
+                    <div style="flex-grow: 1;"></div>
+                    <a href="saas-gallery.html" class="work-link" style="margin-top: 2rem; display: inline-flex; width: fit-content; text-decoration: none;">
+                        View Full Gallery <span class="arrow">&rarr;</span>
+                    </a>
                 </div>
                 <div class="work-card delay-1">
-                    <div class="work-image-placeholder placeholder-alt">
-                        <div class="work-tag">AI Integration</div>
-                    </div>
-                    <h3 class="work-title">Copilot for Legal</h3>
-                    <p class="work-desc">Automated contract generation and review system.</p>
+                    <div class="work-tag">AI Application</div>
+                    <h3 class="work-title">AI Resume Generator</h3>
+                    <p class="work-desc">An AI-powered web application that helps users generate professional resumes quickly by transforming their basic information into well-structured, industry-ready resume formats.</p>
+                    <div style="flex-grow: 1;"></div>
+                    <a href="ai-gallery.html" class="work-link" style="margin-top: 2rem; display: inline-flex; width: fit-content; text-decoration: none;">
+                        View Full Gallery <span class="arrow">&rarr;</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -155,8 +179,8 @@
     <section class="philosophy observer-section">
         <div class="container philosophy-container">
             <h2 class="philosophy-quote">
-                "Most agencies build for the brief.<br>
-                We build for what comes after."
+                "Most tech ventures builds what you ask for.<br>
+                We build what your product will need next.
             </h2>
             <div class="philosophy-attribution">&mdash; Zenyth</div>
         </div>
@@ -203,13 +227,13 @@
     <!-- CTA Section -->
     <section class="cta observer-section" id="contact">
         <div class="container cta-container">
-            <h2 class="cta-headline">Ready to build something at the peak?</h2>
+            <h2 class="cta-headline">Ready to build something peak?</h2>
             <p class="cta-subline">Tell us what you're building. We'll take it from there.</p>
             <form action="https://formspree.io/f/maqpoebb" method="POST" class="contact-form">
                 <input type="text" name="name" placeholder="Your Name" required class="form-input">
                 <input type="email" name="email" placeholder="Email Address" required class="form-input">
                 <textarea name="message" placeholder="Tell us about what you're building..." required class="form-input form-textarea" rows="4"></textarea>
-                <button type="submit" class="btn btn-primary cta-btn">Start a project &rarr;</button>
+                <button type="submit" class="btn btn-primary cta-btn">Build With Zenyth &rarr;</button>
             </form>
             <div class="cta-meta">No retainers. No bloat. Just great work.</div>
         </div>
@@ -254,6 +278,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+
+
+    <script src="script.js?v=2"></script>
 </body>
 </html>

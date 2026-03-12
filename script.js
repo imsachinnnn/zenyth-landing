@@ -2,10 +2,12 @@
 const navbar = document.getElementById('navbar');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    if (navbar) {
+        if (window.scrollY > 40) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     }
 });
 
@@ -13,21 +15,23 @@ window.addEventListener('scroll', () => {
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileNav = document.getElementById('mobileNav');
 
-mobileMenuBtn.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-    if (mobileNav.classList.contains('open')) {
-        mobileMenuBtn.innerHTML = '<span>Close</span>';
-    } else {
-        mobileMenuBtn.innerHTML = '<span>Menu</span>';
-    }
-});
+if (mobileMenuBtn && mobileNav) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('open');
+        if (mobileNav.classList.contains('open')) {
+            mobileMenuBtn.innerHTML = '<span>Close</span>';
+        } else {
+            mobileMenuBtn.innerHTML = '<span>Menu</span>';
+        }
+    });
+}
 
 // Close mobile menu when clicking a link
 const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        mobileMenuBtn.innerHTML = '<span>Menu</span>';
+        if (mobileNav) mobileNav.classList.remove('open');
+        if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<span>Menu</span>';
     });
 });
 
@@ -52,3 +56,4 @@ const sections = document.querySelectorAll('.observer-section');
 sections.forEach(section => {
     observer.observe(section);
 });
+

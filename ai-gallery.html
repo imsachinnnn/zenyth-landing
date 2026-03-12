@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Application Details — Zenyth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: var(--bg-dark);
+            color: var(--bg-white);
+            overflow-x: hidden;
+            padding-top: 100px;
+        }
+
+        .gallery-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(5,5,8,0.9) 0%, transparent 100%);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--bg-white);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            background: rgba(85, 68, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            border: 1px solid rgba(85, 68, 255, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-title {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            padding-bottom: 8rem;
+        }
+
+        .gallery-image-wrapper {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            transition: transform 0.6s var(--ease-premium), box-shadow 0.6s ease;
+        }
+
+        .gallery-image-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 60px 100px rgba(0,0,0,0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-title { font-size: 32px; }
+            .gallery-subtitle { font-size: 16px; }
+            .gallery-container { gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="gallery-nav">
+        <a href="index.html#work" class="back-btn">
+            <span>&larr;</span> Back to Portfolio
+        </a>
+        <img src="zenyth_withtxt_monochrome.png" alt="Zenyth" style="height: 48px;">
+    </nav>
+
+    <div class="gallery-header animate-up">
+        <div class="gallery-tag">AI Application</div>
+        <h1 class="gallery-title">AI Resume Generator</h1>
+        <div class="gallery-subtitle">Web application for automated, industry-ready resumes</div>
+    </div>
+
+    <div class="gallery-container">
+
+        <div class="gallery-image-wrapper observer-section">
+            <img src="ai_scrrenshots/Screenshot 2026-03-12 232828.png" alt="Generator Interface" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="ai_scrrenshots/Screenshot 2026-03-12 233554.png" alt="Output Settings" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="ai_scrrenshots/Screenshot 2026-03-12 233730.png" alt="Resume Preview" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="ai_scrrenshots/Screenshot 2026-03-12 233800.png" alt="Export Output" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="ai_scrrenshots/Screenshot 2026-03-12 233822.png" alt="AI Feature Flow" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="ai_scrrenshots/Screenshot 2026-03-12 234117.png" alt="AI Feature Flow" class="gallery-img">
+        </div>
+    </div>
+
+    <script src="script.js?v=3"></script>
+</body>
+</html>
