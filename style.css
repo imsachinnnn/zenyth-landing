@@ -221,33 +221,71 @@ body {
 }
 
 .mobile-nav {
-    display: none;
-    flex-direction: column;
-    padding: 1rem 5%;
-    background: var(--bg-white);
-    border-bottom: 1px solid var(--border-color);
-    position: absolute;
-    width: 100%;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100vw;
+    height: 100vh;
+    background: var(--bg-white);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    
+    /* Animation initial state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.5s var(--ease-premium), transform 0.5s var(--ease-premium), visibility 0.5s;
 }
 
 .mobile-nav.open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 .mobile-nav-link {
     text-decoration: none;
     color: var(--text-primary);
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 14px;
+    font-size: 56px; /* Massive immersive typography */
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    border: none;
+    
+    /* Staggered animation setup */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s var(--ease-premium), transform 0.6s var(--ease-premium);
 }
 
-.mobile-nav-link:last-child {
-    border-bottom: none;
+.mobile-nav-link::before {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-right: 1.5rem;
+    transform: translateY(-15px); /* Align number to top top */
 }
+
+/* Add custom numbers for that premium catalog feel */
+.mobile-nav-link:nth-child(1)::before { content: '01'; }
+.mobile-nav-link:nth-child(2)::before { content: '02'; }
+.mobile-nav-link:nth-child(3)::before { content: '03'; }
+
+.mobile-nav.open .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered entry delays */
+.mobile-nav.open .mobile-nav-link:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav.open .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav.open .mobile-nav-link:nth-child(3) { transition-delay: 0.3s; }
 
 /* Hero Section */
 .hero {
@@ -820,8 +858,11 @@ a:focus, button:focus {
         font-size: 64px;
     }
     
-    .hero-definition {
-        display: none; /* hide definition on smaller screens */
+    .hero-subcontent-row {
+        flex-direction: column;
+        gap: 2.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 2.5rem;
     }
     
     .services-grid {
@@ -847,30 +888,132 @@ a:focus, button:focus {
     }
     
     .process-step {
-        padding-left: 2.5rem;
+        padding-left: 3rem;
     }
     
     .step-watermark {
-        left: -10px;
-        top: -10px;
+        left: -15px;
+        top: -15px;
     }
 }
 
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 1rem 5%;
+        justify-content: center;
+        position: relative;
+    }
+    
+    .nav-logo {
+        height: 75px; /* Increased for better visibility on mobile */
+    }
+    
+    .navbar.scrolled .nav-logo {
+        height: 52px;
+    }
+
     .desktop-menu {
         display: none;
     }
     
     .mobile-menu-btn {
         display: block;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        z-index: 110;
+    }
+    
+    .burger-lines {
+        position: relative;
+        width: 24px;
+        height: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end; /* Right aligns the uneven lines */
+    }
+    
+    .burger-lines .line {
+        display: block;
+        height: 1.5px;
+        background-color: var(--text-primary);
+        border-radius: 2px;
+        transition: transform 0.4s var(--ease-premium), width 0.4s var(--ease-premium), opacity 0.4s;
+    }
+    
+    .burger-lines .line-top {
+        width: 100%;
+        transform-origin: center;
+    }
+    
+    .burger-lines .line-bottom {
+        width: 60%; /* Aesthetic uneven bottom line */
+        transform-origin: center;
+    }
+    
+    /* Animation into X */
+    .mobile-menu-btn.active .line-top {
+        transform: translateY(4.25px) rotate(45deg);
+    }
+    
+    .mobile-menu-btn.active .line-bottom {
+        width: 100%;
+        transform: translateY(-4.25px) rotate(-45deg);
+    }
+
+    
+    .hero {
+        padding-top: 80px; /* Less top padding */
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    .hero-container {
+        padding-top: 2rem; /* Reduced from 5rem */
     }
     
     .hero-headline {
-        font-size: 48px;
+        font-size: 44px; /* Slightly smaller to fit "Creativity" */
+        line-height: 1.1;
     }
     
     .hero-headline .line-2 {
-        margin-left: 1em;
+        display: block;
+        margin-left: 0; /* Removing the 1em indent so it fits on screen */
+        margin-top: 0.2rem;
+    }
+    
+    .hero-subline {
+        font-size: 16px;
+    }
+    
+    .hero-subcontent-row {
+        gap: 1.5rem; /* Tighter gap between description and dictionary box */
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem; /* Tighter gap between buttons */
+        width: 100%;
+    }
+    
+    .btn-secondary {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+    
+    .services, .works, .philosophy, .process, .cta {
+        padding: 5rem 0; /* Less vertical padding on mobile sections */
     }
 
     .philosophy-quote {
@@ -879,6 +1022,10 @@ a:focus, button:focus {
     
     .cta-headline {
         font-size: 32px;
+    }
+    
+    .work-card {
+        padding: 2rem;
     }
     
     .footer-container {
