@@ -1,20 +1,47 @@
 :root {
-    /* Colors */
-    --bg-white: #FFFFFF;
-    --bg-dark: #0A0A0A;
-    --text-primary: #0A0A0A;
-    --text-secondary: #888888;
-    --border-color: #EEEEEE;
+    /* Base Colors - Light Theme */
+    --bg-main: #FFFFFF;
+    --bg-surface: #FFFFFF;
+    --bg-inverted: #0A0A0A;
+    --text-main: #0A0A0A;
+    --text-muted: #888888;
+    --text-inverted: #FFFFFF;
+    --border-main: #EEEEEE;
+    --btn-text: #FFFFFF;
+    
+    /* Legacy variables mapping */
+    --bg-white: var(--bg-main);
+    --bg-dark: var(--bg-inverted);
+    --text-primary: var(--text-main);
+    --text-secondary: var(--text-muted);
+    --border-color: var(--border-main);
     --accent: #5544FF;
     --accent-hover: #3E2FDE;
     --accent-light: rgba(85, 68, 255, 0.1);
-    
     /* Typography */
     --font-main: 'Inter', sans-serif;
     
     /* Animation */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="dark"] {
+    --bg-main: #0A0A0A;
+    --bg-surface: #111111;
+    --bg-inverted: #050505;
+    --text-main: #FFFFFF;
+    --text-muted: #AAAAAA;
+    --text-inverted: #FFFFFF;
+    --border-main: #222222;
+    --btn-text: #FFFFFF;
+    --accent-light: rgba(85, 68, 255, 0.2);
+    --nav-bg: rgba(10, 10, 10, 0.85); /* Dark mode navbar background */
+}
+
+/* Base style for nav background variable */
+:root {
+    --nav-bg: rgba(255, 255, 255, 0.85); /* Light mode navbar background */
 }
 
 * {
@@ -29,7 +56,7 @@ html {
 
 body {
     font-family: var(--font-main);
-    background-color: var(--bg-white);
+    background-color: var(--bg-main);
     color: var(--text-primary);
     line-height: 1.5;
     overflow-x: hidden;
@@ -83,7 +110,7 @@ body {
 
 .btn-primary {
     background-color: var(--accent);
-    color: var(--bg-white);
+    color: var(--btn-text);
     border-radius: 6px;
     box-shadow: 0 4px 14px rgba(85, 68, 255, 0.3);
     border: 1px solid transparent;
@@ -137,11 +164,22 @@ body {
 }
 
 .navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: var(--nav-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom-color: var(--border-color);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* Dark mode specific modifications for box shadow */
+[data-theme="dark"] .navbar.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Dynamic Logo Swapping for Dark Mode */
+[data-theme="dark"] .nav-logo,
+[data-theme="dark"] .footer-logo {
+    content: url("zenyth_withtxt_monochrome.png");
 }
 
 .nav-container {
@@ -226,7 +264,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--bg-white);
+    background: var(--bg-main);
     z-index: 90;
     display: flex;
     flex-direction: column;
@@ -438,8 +476,8 @@ body {
 
 /* Marquee */
 .marquee-strip {
-    background-color: var(--bg-dark);
-    color: var(--bg-white);
+    background-color: var(--bg-inverted);
+    color: var(--text-inverted);
     padding: 0.8rem 0;
     overflow: hidden;
     position: relative;
@@ -495,14 +533,14 @@ body {
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid transparent;
-    background-color: var(--bg-white);
+    background-color: var(--bg-surface);
 }
 
 .service-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.06);
     border-color: var(--accent-light);
-    background: linear-gradient(to bottom, #ffffff, #fafaff);
+    background: var(--bg-surface);
 }
 
 .service-divider {
@@ -537,8 +575,8 @@ body {
 /* Works */
 .works {
     padding: 8rem 0;
-    background-color: var(--bg-dark);
-    color: var(--bg-white);
+    background-color: var(--bg-inverted);
+    color: var(--text-inverted);
 }
 
 .works .section-label {
@@ -554,8 +592,8 @@ body {
 .work-card {
     flex: 1;
     min-width: 300px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(var(--text-inverted-rgb, 255, 255, 255), 0.02);
+    border: 1px solid rgba(var(--text-inverted-rgb, 255, 255, 255), 0.05);
     border-radius: 16px;
     padding: 3rem;
     cursor: pointer;
@@ -618,8 +656,8 @@ body {
 
 /* Philosophy */
 .philosophy {
-    background-color: var(--bg-dark);
-    color: var(--bg-white);
+    background-color: var(--bg-inverted);
+    color: var(--text-inverted);
     padding: 8rem 0;
     text-align: center;
 }
@@ -662,7 +700,7 @@ body {
 .process-step {
     position: relative;
     z-index: 1;
-    background: var(--bg-white); /* to cover the line behind text */
+    background: var(--bg-main); /* to cover the line behind text */
     padding: 0 1.5rem;
     flex: 1;
     text-align: left;
@@ -742,7 +780,7 @@ body {
     font-family: var(--font-main);
     font-size: 14px;
     color: var(--text-primary);
-    background: var(--bg-white);
+    background: var(--bg-surface);
     transition: border-color 0.2s ease, outline 0.2s ease;
 }
 
@@ -853,6 +891,30 @@ a:focus, button:focus {
 }
 
 /* Responsive */
+
+/* Theme Toggle Styles */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.theme-toggle-btn:hover {
+    background-color: var(--border-color);
+    color: var(--accent);
+}
+
 @media (max-width: 992px) {
     .hero-headline {
         font-size: 64px;
@@ -916,18 +978,24 @@ a:focus, button:focus {
         display: none;
     }
     
-    .mobile-menu-btn {
-        display: block;
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         position: absolute;
         right: 5%;
         top: 50%;
         transform: translateY(-50%);
-        padding: 10px;
+        z-index: 110;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        padding: 5px;
         background: transparent;
         border: none;
         cursor: pointer;
         outline: none;
-        z-index: 110;
     }
     
     .burger-lines {
