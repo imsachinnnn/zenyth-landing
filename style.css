@@ -18,6 +18,8 @@
     --accent: #5544FF;
     --accent-hover: #3E2FDE;
     --accent-light: rgba(85, 68, 255, 0.1);
+    --nav-bg: rgba(255, 255, 255, 0.85); /* Light mode navbar background */
+    
     /* Typography */
     --font-main: 'Inter', sans-serif;
     
@@ -37,11 +39,6 @@
     --btn-text: #FFFFFF;
     --accent-light: rgba(85, 68, 255, 0.2);
     --nav-bg: rgba(10, 10, 10, 0.85); /* Dark mode navbar background */
-}
-
-/* Base style for nav background variable */
-:root {
-    --nav-bg: rgba(255, 255, 255, 0.85); /* Light mode navbar background */
 }
 
 * {
@@ -179,7 +176,7 @@ body {
 /* Dynamic Logo Swapping for Dark Mode */
 [data-theme="dark"] .nav-logo,
 [data-theme="dark"] .footer-logo {
-    content: url("zenyth_withtxt_monochrome.png");
+    content: url("zenyth_whitetext.png");
 }
 
 .nav-container {
