@@ -1,7 +1,7 @@
 :root {
     /* Base Colors - Light Theme */
     --bg-main: #FFFFFF;
-    --bg-surface: #FFFFFF;
+    --bg-surface: #FAFAFA;
     --bg-inverted: #0A0A0A;
     --text-main: #0A0A0A;
     --text-muted: #888888;
@@ -473,13 +473,13 @@ body {
 
 /* Marquee */
 .marquee-strip {
-    background-color: var(--bg-inverted);
-    color: var(--text-inverted);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
     padding: 0.8rem 0;
     overflow: hidden;
     position: relative;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     display: flex;
 }
 
@@ -572,8 +572,8 @@ body {
 /* Works */
 .works {
     padding: 8rem 0;
-    background-color: var(--bg-inverted);
-    color: var(--text-inverted);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
 }
 
 .works .section-label {
@@ -589,20 +589,20 @@ body {
 .work-card {
     flex: 1;
     min-width: 300px;
-    background: rgba(var(--text-inverted-rgb, 255, 255, 255), 0.02);
-    border: 1px solid rgba(var(--text-inverted-rgb, 255, 255, 255), 0.05);
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 3rem;
     cursor: pointer;
-    transition: transform 0.4s var(--ease-premium), background 0.4s ease, border-color 0.4s ease;
+    transition: transform 0.4s var(--ease-premium), box-shadow 0.4s ease, border-color 0.4s ease;
     display: flex;
     flex-direction: column;
 }
 
 .work-card:hover {
     transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    border-color: var(--accent-light);
 }
 
 .work-card:hover .arrow {
@@ -651,10 +651,50 @@ body {
     transition: transform 0.3s var(--ease-premium);
 }
 
+/* Card Inline Buttons */
+.card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-enquire-btn {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.card-enquire-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 4px 15px var(--accent-light);
+    transform: translateY(-2px);
+    background: var(--accent-light);
+}
+
+.card-download-btn {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    color: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 15px rgba(85, 68, 255, 0.2);
+}
+
+.card-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(85, 68, 255, 0.4);
+    background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent) 100%);
+}
+
 /* Philosophy */
 .philosophy {
-    background-color: var(--bg-inverted);
-    color: var(--text-inverted);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     padding: 8rem 0;
     text-align: center;
 }
@@ -675,6 +715,7 @@ body {
 /* Process */
 .process {
     padding: 8rem 0;
+    background-color: var(--bg-surface);
 }
 
 .process-timeline {
@@ -697,7 +738,7 @@ body {
 .process-step {
     position: relative;
     z-index: 1;
-    background: var(--bg-main); /* to cover the line behind text */
+    background: var(--bg-surface); /* to cover the line behind text */
     padding: 0 1.5rem;
     flex: 1;
     text-align: left;
