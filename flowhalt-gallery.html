@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowHalt App Details — Zenyth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="icon" type="image/png" href="zenyth_original.png">
+
+    <style>
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            padding-top: 100px;
+        }
+
+        .gallery-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--bg-main) 10%, transparent 100%);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            background: var(--accent-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            border: 1px solid var(--accent-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-title {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-subtitle {
+            color: var(--text-secondary);
+            font-size: 20px;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .gallery-cta-wrapper {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            min-height: 52px;
+        }
+
+        .gallery-cta {
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.3s;
+            display: flex;
+            justify-content: center;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .premium-download-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 40px;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(85, 68, 255, 0.3);
+            border-radius: 100px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            cursor: pointer;
+        }
+
+        .side-floating-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(85, 68, 255, 0.9);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(85, 68, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(30px) scale(0.8);
+        }
+
+        .side-floating-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .side-floating-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(85, 68, 255, 0.7);
+            background: rgba(100, 85, 255, 1);
+        }
+
+        @media (max-width: 768px) {
+            .side-floating-btn {
+                bottom: 25px;
+                right: 25px;
+            }
+        }
+
+        .premium-download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(85, 68, 255, 0.1) 0%, rgba(85, 68, 255, 0) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .premium-download-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(85, 68, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(85, 68, 255, 0.5);
+            background: rgba(15, 15, 20, 0.95);
+        }
+
+        .premium-download-btn:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            padding-bottom: 8rem;
+        }
+
+        .back-to-top-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .back-to-top-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-to-top-btn svg {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            width: 44px;
+            height: 44px;
+            padding: 12px;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .back-to-top-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .back-to-top-btn:hover svg {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.15);
+        }
+
+        .gallery-image-wrapper {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+            transition: transform 0.6s var(--ease-premium), box-shadow 0.6s ease, border-color 0.6s ease;
+        }
+
+        .gallery-image-wrapper:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 60px 100px rgba(0,0,0,0.12);
+            border-color: var(--accent);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            body { 
+                padding-top: 80px; 
+            }
+            .gallery-nav { 
+                padding: 1rem 5%; 
+                background: linear-gradient(to bottom, var(--bg-main) 10%, transparent 100%);
+            }
+            .gallery-nav img {
+                height: 32px !important;
+            }
+            .back-btn {
+                font-size: 13px;
+            }
+            .gallery-header { 
+                margin-bottom: 2.5rem; 
+                padding: 0 5%;
+            }
+            .gallery-tag {
+                font-size: 10px;
+                padding: 0.4rem 0.8rem;
+                margin-bottom: 1rem;
+            }
+            .gallery-title { 
+                font-size: 32px; 
+                line-height: 1.15;
+                margin-bottom: 0.75rem;
+                letter-spacing: -0.01em;
+            }
+            .gallery-subtitle { 
+                font-size: 15px; 
+                line-height: 1.5;
+            }
+            .gallery-container { 
+                gap: 2rem;
+                padding: 0 1rem;
+                padding-bottom: 5rem;
+            }
+            .gallery-image-wrapper {
+                border-radius: 12px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+                border: 1px solid var(--border-color);
+            }
+            .gallery-image-wrapper:hover {
+                transform: none;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+                border-color: var(--border-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="gallery-nav">
+        <a href="index.html#work" class="back-btn">
+            <span>&larr;</span> Back to Portfolio
+        </a>
+        <img src="zenyth_original.png" alt="Zenyth" style="height: 48px;">
+    </nav>
+
+    <div class="gallery-header animate-up">
+        <div class="gallery-tag">Mobile App</div>
+        <h1 class="gallery-title">FlowHalt</h1>
+        <div class="gallery-subtitle">A smart 5G utility that instantly halts mobile data when your connection silently drops to 4G—preventing invisible data drains and expensive background waste.</div>
+        
+        <div class="gallery-cta-wrapper" id="cta-wrapper">
+            <div class="gallery-cta">
+                <a href="https://pub-9592bdd9343e459faa268f0c9be035c6.r2.dev/flowhalt_1.0.apk" class="premium-download-btn" id="download-btn">
+                    <span class="btn-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </span>
+                    <span class="btn-text">Download App</span>
+                    <span class="btn-glow"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <!-- Screenshots -->
+        <div class="gallery-image-wrapper observer-section">
+            <img src="flowhalt/post6.png" alt="FlowHalt View" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="flowhalt/post1.png" alt="FlowHalt View" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="flowhalt/post4.png" alt="FlowHalt View" class="gallery-img">
+        </div>
+        <div class="gallery-image-wrapper observer-section">
+            <img src="flowhalt/post5.png" alt="FlowHalt View" class="gallery-img">
+        </div>
+
+        <div class="back-to-top-wrapper animate-up" style="animation-delay: 0.2s;">
+            <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
+                <span>Back to Top</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Right Side Floating Button -->
+    <a href="https://pub-9592bdd9343e459faa268f0c9be035c6.r2.dev/flowhalt_1.0.apk" id="side-floating-btn" class="side-floating-btn" aria-label="Download App">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+    </a>
+
+    <script src="script.js?v=3"></script>
+    <script>
+        // Intersection Observer to smartly float the right-side Download button when scrolling past header
+        const ctaWrapper = document.getElementById('cta-wrapper');
+        const sideBtn = document.getElementById('side-floating-btn');
+        
+        const floatObserver = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            // If the wrapper is out of view and we scrolled down past it (boundingClientRect.top < 0)
+            if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                sideBtn.classList.add('visible');
+            } else {
+                sideBtn.classList.remove('visible');
+            }
+        }, { root: null, threshold: 0 });
+        
+        if (ctaWrapper) {
+            floatObserver.observe(ctaWrapper);
+        }
+
+        document.getElementById('backToTopBtn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
