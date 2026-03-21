@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://zenyth.in/</loc>
-        <lastmod>2025-03-19</lastmod>
+        <loc>https://zenyth-in.vercel.app/</loc>
+        <lastmod>2026-03-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://zenyth.in/saas-gallery.html</loc>
-        <lastmod>2025-03-19</lastmod>
+        <loc>https://zenyth-in.vercel.app/saas-gallery.html</loc>
+        <lastmod>2026-03-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zenyth.in/ai-gallery.html</loc>
-        <lastmod>2025-03-19</lastmod>
+        <loc>https://zenyth-in.vercel.app/ai-gallery.html</loc>
+        <lastmod>2026-03-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://zenyth.in/flowhalt-gallery.html</loc>
-        <lastmod>2025-03-19</lastmod>
+        <loc>https://zenyth-in.vercel.app/flowhalt-gallery.html</loc>
+        <lastmod>2026-03-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
