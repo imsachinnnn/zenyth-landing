@@ -95,3 +95,28 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
+// Back to Top functionality
+const backToTopBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+    if (backToTopBtn) {
+        // Calculate exactly 50% of the total scrollable distance
+        const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollThreshold = scrollableDistance * 0.5;
+        if (window.scrollY > scrollThreshold) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    }
+});
+
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
